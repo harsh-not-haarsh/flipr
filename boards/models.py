@@ -1,28 +1,83 @@
 from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
+from django.db.models.signals import pre_save, post_save
+from .utils import unique_random_code
 
 
 class Card(models.Model):
-    card_name = models.CharField(max_length=16, default="card")
+    name = models.CharField(max_length=16, default="card")
     content = models.CharField(max_length=64, default="card")
     image = models.ImageField(null=True)
     file = models.FileField(null=True)
     link = models.URLField(null=True)
+    obj_id = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.obj_id
+
+
+def pre_save_card(sender, instance, **kwargs):
+    if instance._state.adding is True:
+        instance.obj_id = unique_random_code(instance)
+
+
+pre_save.connect(pre_save_card, sender=Card)
 
 
 class List(models.Model):
-    list_name = models.CharField(max_length=16, default="list")
+    name = models.CharField(max_length=16, default="list")
     cards = models.ManyToManyField(Card, related_name="card")
+    obj_id = models.CharField(max_length=32)
+
+    def __str__(self):
+        return self.name
 
 
-class PersonalBoard(models.Model):
-    lists = models.ManyToManyField(List, related_name="list")
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+def pre_save_list(sender, instance, **kwargs):
+    if instance._state.adding is True:
+        instance.obj_id = unique_random_code(instance)
 
 
-class TeamBoard(models.Model):
-    members = models.ManyToManyField(User, related_name="member")
-    admins = models.ManyToManyField(User, related_name="admin")
+pre_save.connect(pre_save_list, sender=List)
+
+
+def post_save_list(sender, instance, created, **kwargs):
+    if created:
+        card = Card.objects.create(name="Task")
+        instance.cards.add(card)
+
+
+post_save.connect(post_save_list, sender=List)
+
+
+class Board(models.Model):
+    personal_board = models.BooleanField(default=False)
+    members = models.ManyToManyField(User, related_name="member", blank=True)
+    admins = models.ManyToManyField(User, related_name="admin", blank=True)
     name = models.CharField(max_length=16, default="Board")
-    lists = models.ManyToManyField(List)
+    lists = models.ManyToManyField(List, blank=True)
+    obj_id = models.CharField(max_length=16, default="NULL")
+
+    def __str__(self):
+        return self.name
+
+
+def pre_save_board(sender, instance, **kwargs):
+    if instance._state.adding is True:
+        instance.obj_id = unique_random_code(instance)
+
+
+pre_save.connect(pre_save_board, sender=Board)
+
+
+def post_save_board(sender, instance, created, **kwargs):
+    if created:
+        list1 = List.objects.create(name="To Do")
+        instance.lists.add(list1)
+        list2 = List.objects.create(name="In Progress")
+        list3 = List.objects.create(name="Completed")
+        instance.lists.add(list2)
+        instance.lists.add(list3)
+
+
+post_save.connect(post_save_board, sender=Board)

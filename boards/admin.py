@@ -1,18 +1,26 @@
 from django.contrib import admin
-from .models import PersonalBoard, TeamBoard
+from .models import Board, List, Card
 
 
-class PersonalBoardAdmin(admin.ModelAdmin):
+class BoardAdmin(admin.ModelAdmin):
     class Meta:
-        model = PersonalBoard
+        model = Board
 
 
-admin.site.register(PersonalBoard, PersonalBoardAdmin)
+admin.site.register(Board, BoardAdmin)
 
 
-class TeamBoardAdmin(admin.ModelAdmin):
+class ListAdmin(admin.ModelAdmin):
     class Meta:
-        model = TeamBoard
+        model = List
 
 
-admin.site.register(TeamBoard, TeamBoardAdmin)
+admin.site.register(List, ListAdmin)
+
+
+class CardAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Card
+
+
+admin.site.register(Card, CardAdmin)

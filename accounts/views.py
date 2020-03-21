@@ -1,7 +1,7 @@
 # from django.shortcuts import render
 from django.views.generic import CreateView
 from .forms import signupForm
-from boards.models import PersonalBoard
+from boards.models import Board
 
 
 class registerView(CreateView):
@@ -14,8 +14,9 @@ class registerView(CreateView):
         form = signupForm(data)
         user = form.save()
         user.username = data['email']
-        user.save()
-        board = PersonalBoard.objects.create(user=user)
+        board = Board.objects.create(personal_board=True)
+        board.members.add(user)
+        board.admin.add(user)
         board.save()
         return super(registerView, self).form_valid(form)
 
