@@ -21,7 +21,7 @@ class PersonalBoard(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-class Teamboard(models.Model):
+class TeamBoard(models.Model):
     members = models.ManyToManyField(User, related_name="member")
     admins = models.ManyToManyField(User, related_name="admin")
     name = models.CharField(max_length=16, default="Board")

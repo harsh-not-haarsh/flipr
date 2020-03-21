@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PersonalBoard, Teamboard
+from .models import PersonalBoard, TeamBoard
 
 
 class PersonalBoardAdmin(admin.ModelAdmin):
@@ -10,9 +10,9 @@ class PersonalBoardAdmin(admin.ModelAdmin):
 admin.site.register(PersonalBoard, PersonalBoardAdmin)
 
 
-class TeamboardAdmin(admin.ModelAdmin):
+class TeamBoardAdmin(admin.ModelAdmin):
     class Meta:
-        model = Teamboard
+        model = TeamBoard
 
 
-admin.site.register(Teamboard, TeamboardAdmin)
+admin.site.register(TeamBoard, TeamBoardAdmin)
