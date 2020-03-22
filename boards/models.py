@@ -52,6 +52,7 @@ post_save.connect(post_save_list, sender=List)
 
 class Board(models.Model):
     personal_board = models.BooleanField(default=False)
+    description = models.CharField(max_length=128, blank=True)
     members = models.ManyToManyField(User, related_name="member", blank=True)
     admins = models.ManyToManyField(User, related_name="admin", blank=True)
     name = models.CharField(max_length=16, default="Board")

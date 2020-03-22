@@ -17,6 +17,7 @@ class registerView(CreateView):
         board = Board.objects.create(personal_board=True)
         board.members.add(user)
         board.admin.add(user)
+        board.personal_board = True
         board.save()
         return super(registerView, self).form_valid(form)
 
