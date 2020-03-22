@@ -35,7 +35,7 @@
 
             <hr class="sidebar-divider my-0">
             <li class="nav-item active">
-                <a class="nav-link" href="/board/display/{{board.obj_id}}">
+                <a class="nav-link" href="/board/{{board.obj_id}}/display">
 
                     <span>{{board.name}}</span></a>
             </li>
@@ -45,7 +45,7 @@
             </div>
             {% for list in board.lists.all %}
             <li class="nav-item">
-                <a class="nav-link" href="/board/display/list/{{list.obj_id}}">
+                <a class="nav-link" href="/board/{{list.obj_id}}/list">
                     <i class="fas fa-list"></i>
                     <span>{{list.name}}</span>
                 </a>
@@ -56,7 +56,7 @@
                 Options
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'boards:createList' %}">
+                <a class="nav-link" href="/board/{{board.obj_id}}/createList">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Add List</span></a>
             </li>

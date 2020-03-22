@@ -15,20 +15,21 @@ def CreateBoard(request):
     return render(request, 'boards/create_board.html')
 
 
-def CreateList(request):
+def CreateList(request, obj_id):
     if request.method == 'POST':
-        board = request.obj_id
+        board = get_object_or_404(Board, obj_id=obj_id)
         list1 = List.objects.create(name=request.POST.get('name'))
         board.lists.add(list1)
+        return Display(request, obj_id=obj_id)
     return render(request, 'boards/create_list.html')
 
 
-def CreateCard(request):
+def CreateCard(request, obj_id):
     if request.method == 'POST':
-        list_id = request.list_id
-        list1 = get_object_or_404(List, board_id=list_id)
+        list1 = get_object_or_404(List, obj_id=obj_id)
         card = Card.objects.create(name=request.POST.get('name'))
-        list1.lists.add(card)
+        list1.cards.add(card)
+        return DisplayList(request, obj_id=obj_id)
     return render(request, 'boards/create_card.html')
 
 

@@ -6,8 +6,8 @@ app_name = 'boards'
 
 urlpatterns = [
     url(r'createBoard', CreateBoard, name='createBoard'),
-    url(r'createList', CreateList, name='createList'),
-    url(r'createCard', CreateCard, name='createCard'),
-    url(r'display/(?P<obj_id>\w+)/$', Display, name='display'),
-    url(r'display/list/(?P<obj_id>\w+)/$', DisplayList, name='display_list'),
+    url(r'(?P<obj_id>\w+)/createList', CreateList, name='createList'),
+    url(r'(?P<obj_id>\w+)/createCard', CreateCard, name='createCard'),
+    url(r'(?P<obj_id>\w+)/display', Display, name='display'),
+    url(r'(?P<obj_id>\w+)/list', DisplayList, name='display_list'),
 ]

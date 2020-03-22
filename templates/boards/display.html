@@ -10,7 +10,7 @@
         <div class="col-lg-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a href="/board/display/list/{{list.obj_id}}">
+                    <a href="/board/{{list.obj_id}}/list">
                         <h6 class="m-0 font-weight-bold text-primary">{{list.name}}</h6>
                     </a>
                 </div>
@@ -18,16 +18,13 @@
                     {% for card in list.cards.all %}
                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{card.name}}</div>
                     {% endfor %}
-                    <a href="{% url 'boards:createCard' %}">
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">+</div>
-                    </a>
                 </div>
             </div>
         </div>
         {% endfor %}
 
         <div class="col-lg-4">
-            <a href="{% url 'boards:createList' %}">
+            <a href="/board/{{board.obj_id}}/createList">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Create List</h6>
