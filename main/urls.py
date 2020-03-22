@@ -6,5 +6,5 @@ app_name = 'main'
 
 urlpatterns = [
     path('', CustomLoginView.as_view(), name='login'),
-    path('/home', IndexView.as_view(), name='home'),
+    path('home', IndexView.as_view(), name='home'),
 ]
