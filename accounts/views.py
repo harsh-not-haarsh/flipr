@@ -2,6 +2,8 @@
 from django.views.generic import CreateView
 from .forms import signupForm
 from boards.models import Board
+from django.contrib.auth.views import LoginView
+from django.shortcuts import reverse
 
 
 class registerView(CreateView):
@@ -25,3 +27,11 @@ class registerView(CreateView):
         context = self.get_context_data(**kwargs)
         context['form'] = form
         return self.render_to_response(context)
+
+
+class CustomLoginView(LoginView):
+    template_name = 'accounts/login.html'
+    redirect_authenticated_user = True
+
+    def get_redirect_url(self):
+        return reverse('main:home')
