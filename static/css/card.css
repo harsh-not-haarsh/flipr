@@ -9,7 +9,7 @@ body .card{
     /* background:#666; */
     /* color:#fff; */
 }
-h2,p.card{
+h2,p{
     font-size:100%;
     font-weight:normal;
     color: black;
@@ -21,7 +21,7 @@ ul.card{
     overflow:hidden;
     padding:3em;
 }
-ul li a.card{
+li a.card{
     text-decoration:none;
     color:#000;
     background:#f6ff7a;
@@ -38,44 +38,44 @@ ul li a.card{
     -o-transition:-o-transform .15s linear;
     -webkit-transition:-webkit-transform .15s linear;
 }
-ul li.card{
+li.card{
     margin:1em;
     float:left;
 }
-ul li h2.card{
+li h2{
     
-    font-size:140%;
+    font-size:110%;
     font-weight:bold;
     padding-bottom:10px;
 }
-ul li p.card{
+li p{
     font-family:"Reenie Beanie",arial,sans-serif;
-    font-size:180%;
+    font-size:90%;
 }
-ul li.card:nth-child(even) a.card{
-    -o-transform:rotate(4deg);
-    -webkit-transform:rotate(4deg);
-    -moz-transform:rotate(4deg);
+li.card:nth-child(even) a.card{
+    -o-transform:rotate(1deg);
+    -webkit-transform:rotate(1deg);
+    -moz-transform:rotate(1deg);
     position:relative;
     top:5px;
 }
-ul li.card:nth-child(3n) a.card{
-    -o-transform:rotate(-3deg);
-    -webkit-transform:rotate(-3deg);
-    -moz-transform:rotate(-3deg);
+li.card:nth-child(3n) a.card{
+    -o-transform:rotate(-1deg);
+    -webkit-transform:rotate(-1deg);
+    -moz-transform:rotate(-1deg);
     position:relative;
     top:-5px;
     background:#f26b6b;
 }
-ul li.card:nth-child(5n) a.card{
-    -o-transform:rotate(5deg);
-    -webkit-transform:rotate(5deg);
-    -moz-transform:rotate(5deg);
+li.card:nth-child(5n) a.card{
+    -o-transform:rotate(2deg);
+    -webkit-transform:rotate(2deg);
+    -moz-transform:rotate(2deg);
     position:relative;
     top:-10px;
     background: #6bbcf2;
 }
-ul li a.card:hover,ul li a.card:focus{
+li a.card:hover,li a.card:focus{
     -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
     -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
     box-shadow:10px 10px 7px rgba(0,0,0,.7);

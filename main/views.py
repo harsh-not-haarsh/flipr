@@ -11,4 +11,5 @@ class IndexView(TemplateView):
         if self.request.user.is_authenticated:
             boards = self.request.user.member.all()
             context['boards'] = boards
+            context['user'] = self.request.user
             return context
