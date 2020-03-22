@@ -56,7 +56,7 @@ class Board(models.Model):
     members = models.ManyToManyField(User, related_name="member", blank=True)
     admins = models.ManyToManyField(User, related_name="admin", blank=True)
     name = models.CharField(max_length=16, default="Board")
-    lists = models.ManyToManyField(List, blank=True)
+    lists = models.ManyToManyField(List, blank=True, related_name="list")
     obj_id = models.CharField(max_length=16, default="NULL")
 
     def __str__(self):

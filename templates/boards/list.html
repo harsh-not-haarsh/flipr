@@ -1,0 +1,26 @@
+{% extends 'boards/base.html' %}
+{% load static %}
+{% block body %}
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">List: {{list1.name}}</h1>
+    </div>
+    <div class="column">
+    
+        <ul class="card">
+    {% for card in list1.cards.all %}
+
+    <li class="card">
+        <a class="card">
+            <h2 class="card">{{card.name}}</h2>
+            <p class="card">{{card.content}}</p>
+        </a>
+    </li>
+
+    {% endfor %}
+</ul>    
+    </div>
+</div>
+
+<link href="{% static 'css/card.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}

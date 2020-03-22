@@ -36,3 +36,11 @@ def CreateCard(request):
 def Display(request, obj_id="123"):
     board = get_object_or_404(Board, obj_id=obj_id)
     return render(request, 'boards/display.html', {'board': board})
+
+
+def DisplayList(request, obj_id):
+    list1 = get_object_or_404(List, obj_id=obj_id)
+    boards = list1.list.all()
+    for x in boards:
+        board = x
+    return render(request, 'boards/list.html', {'board': board, 'list1': list1})

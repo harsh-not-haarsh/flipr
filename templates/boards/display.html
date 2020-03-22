@@ -18,7 +18,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
+                            <a href="/board/display/list/{{list.obj_id}}">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{list}}</div>
+                            </a>
                             {% for card in list.cards.all %}
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{card.name}}</div>
                             {% endfor %}
