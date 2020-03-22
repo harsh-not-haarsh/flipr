@@ -20,6 +20,7 @@ class registerView(CreateView):
         board.members.add(user)
         board.admins.add(user)
         board.name = "Personal Board"
+        board.description = "Personal Board for " + user.first_name + user.last_name
         board.personal_board = True
         board.save()
         return super(registerView, self).form_valid(form)
