@@ -30,7 +30,7 @@ class List(models.Model):
     obj_id = models.CharField(max_length=32)
 
     def __str__(self):
-        return self.name
+        return self.obj_id
 
 
 def pre_save_list(sender, instance, **kwargs):
@@ -60,7 +60,7 @@ class Board(models.Model):
     obj_id = models.CharField(max_length=16, default="NULL")
 
     def __str__(self):
-        return self.name
+        return self.obj_id
 
 
 def pre_save_board(sender, instance, **kwargs):

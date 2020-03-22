@@ -17,8 +17,7 @@ def CreateBoard(request):
 
 def CreateList(request):
     if request.method == 'POST':
-        board_id = request.board_id
-        board = get_object_or_404(Board, board_id=board_id)
+        board = request.obj_id
         list1 = List.objects.create(name=request.POST.get('name'))
         board.lists.add(list1)
     return render(request, 'boards/create_list.html')
