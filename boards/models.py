@@ -11,7 +11,7 @@ class Card(models.Model):
     file = models.FileField(null=True)
     link = models.URLField(null=True)
     due_date = models.DateField(null=True)
-    obj_id = models.CharField(max_length=64)
+    obj_id = models.CharField(max_length=16)
 
     def __str__(self):
         return self.obj_id
@@ -28,7 +28,7 @@ pre_save.connect(pre_save_card, sender=Card)
 class List(models.Model):
     name = models.CharField(max_length=16, default="list")
     cards = models.ManyToManyField(Card, related_name="card")
-    obj_id = models.CharField(max_length=32)
+    obj_id = models.CharField(max_length=16)
 
     def __str__(self):
         return self.obj_id
