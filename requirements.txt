@@ -3,3 +3,4 @@ Pillow
 django-allauth
 gunicorn
 flake8
+whitenoise
