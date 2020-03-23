@@ -1,6 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Board, List, Card
+from django.http import HttpResponse
+# from django.urls import
+
+
 # from django.views.generic import CreateView
 
 
@@ -48,3 +52,18 @@ def DisplayList(request, obj_id):
     for x in boards:
         board = x
     return render(request, 'boards/list.html', {'board': board, 'list1': list1})
+
+
+@login_required(login_url='/accounts/login')
+def ShareBoard(request, obj_id):
+    return HttpResponse("Share Board Id: <b>{}</b> with your team members.".format(obj_id))
+
+
+@login_required(login_url='/accounts/login')
+def JoinBoard(request):
+    if request.method == 'POST':
+        obj_id = request.POST.get('obj_id')
+        board = get_object_or_404(Board, obj_id=obj_id)
+        board.members.add(request.user)
+        return redirect('/board/{}/display'.format(obj_id))
+    return render(request, 'boards/join_board.html')

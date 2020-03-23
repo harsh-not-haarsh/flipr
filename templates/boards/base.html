@@ -60,6 +60,13 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Add List</span></a>
             </li>
+            {% if board.personal_board == False %}
+            <li class="nav-item">
+                <a class="nav-link" href="/board/{{board.obj_id}}/shareBoard" target="_blank">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Share Board</span></a>
+            </li>
+            {% endif %}
             <hr class="sidebar-divider d-none d-md-block">
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
