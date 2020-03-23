@@ -33,8 +33,14 @@ def CreateCard(request, obj_id):
     if request.method == 'POST':
         list1 = get_object_or_404(List, obj_id=obj_id)
         card = Card.objects.create(name=request.POST.get('name'))
+        card.content = request.POST.get('content')
+        card.due_date = request.POST.get('due_date')
+        # card.file = request.POST.get('file')
+        # card.link = request.POST.get('link')
         list1.cards.add(card)
-        return DisplayList(request, obj_id=obj_id)
+        # card.save()
+        return redirect("/board/{}/list".format(obj_id))
+
     return render(request, 'boards/create_card.html')
 
 

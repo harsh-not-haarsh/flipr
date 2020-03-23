@@ -10,6 +10,7 @@ class Card(models.Model):
     image = models.ImageField(null=True)
     file = models.FileField(null=True)
     link = models.URLField(null=True)
+    due_date = models.DateField(null=True)
     obj_id = models.CharField(max_length=64)
 
     def __str__(self):
@@ -41,13 +42,13 @@ def pre_save_list(sender, instance, **kwargs):
 pre_save.connect(pre_save_list, sender=List)
 
 
-def post_save_list(sender, instance, created, **kwargs):
-    if created:
-        card = Card.objects.create(name="Task")
-        instance.cards.add(card)
+# def post_save_list(sender, instance, created, **kwargs):
+#     if created:
+#         card = Card.objects.create(name="Task")
+#         instance.cards.add(card)
 
 
-post_save.connect(post_save_list, sender=List)
+# post_save.connect(post_save_list, sender=List)
 
 
 class Board(models.Model):
