@@ -14,8 +14,7 @@ def CreateBoard(request):
         board = Board.objects.create(name=request.POST.get('name'))
         board.members.add(request.user)
         board.admins.add(request.user)
-        board.save()
-        return render(request, 'main/index.html')
+        return redirect('/board/{}/display'.format(board.obj_id))
     return render(request, 'boards/create_board.html')
 
 
